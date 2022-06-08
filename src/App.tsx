@@ -17,6 +17,7 @@ function App() {
       );
       return;
     }
+
     setSelectedCategories([...selectedCategories, category]);
   };
 
@@ -26,8 +27,8 @@ function App() {
         selectedCategories.length !== 0
           ? selectedCategories.includes(make)
           : selectedCategories
-      ).map(({ make, model }) => (
-        <Card make={make} model={model} />
+      ).map(({ make, model }, index) => (
+        <Card make={make} model={model} key={index} />
       ))}
 
       {Data.map(({ make }, index) => (
@@ -38,9 +39,21 @@ function App() {
             id={make}
             type="checkbox"
             value={make}
-            onChange={(e) => getSelectedCategories(e.target.value)}
+            checked={selectedCategories.includes(make)}
+            onChange={() => getSelectedCategories(make)}
           />
         </div>
+      ))}
+
+      {selectedCategories.map((make, index) => (
+        <button
+          key={index}
+          id={make}
+          value={make}
+          onClick={() => getSelectedCategories(make)}
+        >
+          {make}
+        </button>
       ))}
     </div>
   );
