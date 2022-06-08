@@ -26,8 +26,8 @@ function App() {
         selectedCategories.length !== 0
           ? selectedCategories.includes(make)
           : selectedCategories
-      ).map((item) => (
-        <Card make={item.make} model={item.model} />
+      ).map(({ make, model }) => (
+        <Card make={make} model={model} />
       ))}
 
       {Data.map(({ make }, index) => (
